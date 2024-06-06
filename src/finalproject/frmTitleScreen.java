@@ -39,18 +39,7 @@ public class frmTitleScreen extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,25 +51,27 @@ public class frmTitleScreen extends javax.swing.JFrame {
                         .addGap(159, 159, 159)
                         .addComponent(btn8x8))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(377, 377, 377)
+                        .addGap(265, 265, 265)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(815, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(btn8x8)
-                .addGap(47, 47, 47)
+                .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1625, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(btn8x8)
+                .addContainerGap(1872, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn8x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8x8ActionPerformed
-        new GridLayout(5,5);//makes new ButtonGrid with 2 parameters
+        //create an 8x8 game board
+        new boardLayout(5,5,10);
+        //new Grid(8,8);
 
     }//GEN-LAST:event_btn8x8ActionPerformed
 

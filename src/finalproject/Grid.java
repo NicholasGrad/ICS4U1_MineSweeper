@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  *
  * @author nicho
  */
-public class GridLayout extends javax.swing.JFrame{
+public class Grid extends javax.swing.JFrame{
     JFrame gridFrame = new JFrame(); //creates frame
     JButton[][] grid; //names the grid of button
     
-    public GridLayout(int width, int length){ //constructor
-        gridFrame.setExtendedState(MAXIMIZED_BOTH);
+    public Grid(int width, int length){ //constructor
+//        gridFrame.setExtendedState(MAXIMIZED_BOTH);
         gridFrame.setLayout(new java.awt.GridLayout(width,length)); //set layout
         grid=new JButton[width][length]; //allocate the size of grid
         for(int y=0; y<length; y++){
