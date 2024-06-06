@@ -71,7 +71,6 @@ public class frmTitleScreen extends javax.swing.JFrame {
     private void btn8x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8x8ActionPerformed
         //create an 8x8 game board
         new boardLayout(5,5,10);
-        //new Grid(8,8);
 
     }//GEN-LAST:event_btn8x8ActionPerformed
 
