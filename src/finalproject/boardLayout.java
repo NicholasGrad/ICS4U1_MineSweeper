@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class boardLayout {
     
-    int tileSize = 100;
+    int tileSize;
     int numRows;
     int numCols;
     
@@ -35,8 +35,8 @@ public class boardLayout {
     JPanel boardPanel = new JPanel();
     
     //create JFrame elements and add to the frame
-    public boardLayout(int rows, int columns, int mines){
-        
+    public boardLayout(int rows, int columns, int mines, int size){
+        tileSize = size;
         numRows = rows;
         numCols = columns;
         numMines = mines;

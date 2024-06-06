@@ -15,7 +15,7 @@ public class frmTitleScreen extends javax.swing.JFrame {
      */
     public frmTitleScreen() {
         initComponents();
-        setExtendedState(frmTitleScreen.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -27,19 +27,32 @@ public class frmTitleScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn8x8 = new javax.swing.JButton();
+        btnPlay = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        cmbGridSelection = new javax.swing.JComboBox<>();
+        lblDifficulty = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        btn8x8.setText("jButton1");
-        btn8x8.addActionListener(new java.awt.event.ActionListener() {
+        btnPlay.setBackground(new java.awt.Color(102, 255, 102));
+        btnPlay.setText("Play");
+        btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn8x8ActionPerformed(evt);
+                btnPlayActionPerformed(evt);
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
+        cmbGridSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy(8x8)", "Medimum (12x12)", "Hard (15x15)", "Impossible (30x30)" }));
+        cmbGridSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGridSelectionActionPerformed(evt);
+            }
+        });
+
+        lblDifficulty.setText("Difficulty");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,31 +61,59 @@ public class frmTitleScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(btn8x8))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(815, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(lblDifficulty))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(btn8x8)
-                .addContainerGap(1872, Short.MAX_VALUE))
+                .addGap(58, 58, 58)
+                .addComponent(lblDifficulty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
+                .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn8x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8x8ActionPerformed
-        //create an 8x8 game board
-        new boardLayout(5,5,10);
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        //create a dificulty of easy, medium, hard, and impossible
+        //create a 8 by 8 grid with size of 100
+        if(cmbGridSelection.getSelectedItem() == "Easy(8x8)"){
+            new boardLayout(5,5,10,100);
+         
+        //create a 12 by 12 grid with size of 50
+        } else if(cmbGridSelection.getSelectedItem() == "Medimum (12x12)"){
+            new boardLayout(12,12,10,50);
+            
+        //create a 15 by 15 grid with size of 20
+        } else if(cmbGridSelection.getSelectedItem() == "Hard (15x15)"){
+            new boardLayout(15,15,10,45);
+            
+        //create a 30 by 30 grid with size of 10
+        } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
+            new boardLayout(30,30,10,40);
+        }
+    }//GEN-LAST:event_btnPlayActionPerformed
 
-    }//GEN-LAST:event_btn8x8ActionPerformed
+    private void cmbGridSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGridSelectionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbGridSelectionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +151,9 @@ public class frmTitleScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn8x8;
+    private javax.swing.JButton btnPlay;
+    private javax.swing.JComboBox<String> cmbGridSelection;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblDifficulty;
     // End of variables declaration//GEN-END:variables
 }
