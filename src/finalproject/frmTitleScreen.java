@@ -36,6 +36,7 @@ public class frmTitleScreen extends javax.swing.JFrame {
         setResizable(false);
 
         btnPlay.setBackground(new java.awt.Color(102, 255, 102));
+        btnPlay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnPlay.setText("Play");
         btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +109,10 @@ public class frmTitleScreen extends javax.swing.JFrame {
         //create a 30 by 30 grid with size of 10
         } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
             new boardLayout(30,30,10,40);
+           
         }
+        
+   
     }//GEN-LAST:event_btnPlayActionPerformed
 
     private void cmbGridSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGridSelectionActionPerformed
