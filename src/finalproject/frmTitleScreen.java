@@ -96,19 +96,19 @@ public class frmTitleScreen extends javax.swing.JFrame {
         //create a dificulty of easy, medium, hard, and impossible
         //create a 8 by 8 grid with size of 100
         if(cmbGridSelection.getSelectedItem() == "Easy(8x8)"){
-            new boardLayout(5,5,10,100);
+            new boardLayout(5,5,10, 100);
          
         //create a 12 by 12 grid with size of 50
         } else if(cmbGridSelection.getSelectedItem() == "Medimum (12x12)"){
-            new boardLayout(12,12,10,50);
+            new boardLayout(12,12,10, 8);
             
         //create a 15 by 15 grid with size of 20
         } else if(cmbGridSelection.getSelectedItem() == "Hard (15x15)"){
-            new boardLayout(15,15,10,45);
+            new boardLayout(15,15,10, 8);
             
         //create a 30 by 30 grid with size of 10
         } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
-            new boardLayout(30,30,10,40);
+            new boardLayout(30,30,10, 8);
            
         }
         
