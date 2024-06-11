@@ -19,6 +19,8 @@ public class Tile extends JButton {
     int r;
     int c;
 
+    boolean clicked = false;
+    
     boolean flagged;
     //declare variable for if mine is at tile
     boolean m;
@@ -40,12 +42,20 @@ public class Tile extends JButton {
             }
         });
     }
-
+    
+    public boolean firstClick(){
+        return clicked;
+    }
+    
     public void setMine(boolean m) {
+        //create a mine in this tile
         this.m = m;
     }
     
     private void handleLeftClick() {
+        
+        clicked = true;
+        
         // Define what happens on left click
         if(flagged) {
 

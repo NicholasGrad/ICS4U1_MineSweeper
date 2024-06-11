@@ -62,7 +62,18 @@ public class boardLayout {
         boardPanel.setLayout(new GridLayout(numRows, numCols));
         frame.add(boardPanel);
 
-        //for loop to create a grid of button tiles based on the number of rows and columns
+       
+        frame.setVisible(true);
+
+        createGrid(board);
+        
+        
+        placeMines(board);
+        //place mines after first click
+    }
+
+    public void createGrid(Tile[][] board){
+         //for loop to create a grid of button tiles based on the number of rows and columns
         for (int r = 0; r < numRows; r++) { //iterate through each row
             for (int c = 0; c < numCols; c++) { //iterate through each column
                 //create a tile object based on the current index
@@ -79,18 +90,16 @@ public class boardLayout {
 
             }
         }
-        frame.setVisible(true);
-        
+    }
+    
+    public void placeMines(Tile[][] board) {
         //place mines
         while (minesPlaced < numMines) {
             int mineRow;
             int mineCol;
-            
-            //do{
-            //
+
             mineRow = (int) (Math.round(Math.random() * (numRows - 1)));
             mineCol = (int) (Math.round(Math.random() * (numCols - 1)));
-            //} while (board[mineRow][mineCol].firstClick == false);
 
             System.out.println(mineRow + " ");
             System.out.println(mineCol + "\n");
@@ -100,8 +109,6 @@ public class boardLayout {
                 board[mineRow][mineCol].setMine(true);
                 minesPlaced++;
             }
-            }
         }
     }
-
-
+}
