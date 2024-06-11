@@ -3,6 +3,7 @@ package finalproject;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import javax.swing.*;
 
@@ -14,64 +15,10 @@ public class boardLayout {
     int numCols;
 
     int numMines;
-    
+    int minesPlaced;
+
     //
-    private class Tile extends JButton {
-
-        //declare variables for row and column indexes
-        int r;
-        int c;
-        
-        
-        boolean flagged;
-        //declare variable for if mine is at tile
-        boolean m;
-        
-        //create a tile object that stores a row and column position
-        public Tile(int r, int c) {
-            this.r = r;
-            this.c = c;
-            
-            // Add mouse listener to handle left and right clicks
-            this.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (SwingUtilities.isLeftMouseButton(e)) {
-                        handleLeftClick();
-                    } else if (SwingUtilities.isRightMouseButton(e)) {
-                        handleRightClick();
-                    }
-                }
-            });
-        }
-        public void setMine(boolean m){
-            this.m = m;
-        }
-        
-        private void handleLeftClick() {
-            // Define what happens on left click
-            if (flagged){
-                
-            }
-            else if (m) {
-                setText("X"); // Example action: mark as mine
-            } else {
-                setText("O"); // Example action: mark as safe
-            }
-        }
-
-        private void handleRightClick() {
-            // Define what happens on right click
-            if(flagged){
-                setText("");
-                flagged = false;
-            }
-            else{    
-                setText("F"); // Example action: mark as flagged
-                flagged = true;
-            }
-        }
-    }
+    boolean minesSet = false;
 
     JFrame frame = new JFrame("Board"); //create a JFrame for the main boardgame
     JLabel textLabel = new JLabel();    //
@@ -133,21 +80,28 @@ public class boardLayout {
             }
         }
         frame.setVisible(true);
- 
-        
         
         //place mines
-        for (int i = 0; i < numMines; i++){
+        while (minesPlaced < numMines) {
+            int mineRow;
+            int mineCol;
+            
+            //do{
             //
-            int mineRow = (int)(Math.round(Math.random()*(numRows-1)));
-            int mineCol = (int)(Math.round(Math.random()*(numCols-1)));
-            
-            
-            
-            
+            mineRow = (int) (Math.round(Math.random() * (numRows - 1)));
+            mineCol = (int) (Math.round(Math.random() * (numCols - 1)));
+            //} while (board[mineRow][mineCol].firstClick == false);
+
             System.out.println(mineRow + " ");
             System.out.println(mineCol + "\n");
+
+            //check if there is already a mine in the tile at the generated mine location
+            if (board[mineRow][mineCol].m == false) {
+                board[mineRow][mineCol].setMine(true);
+                minesPlaced++;
+            }
+            }
         }
     }
 
-}
+
