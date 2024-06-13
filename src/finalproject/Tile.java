@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package finalproject;
 
 import java.awt.*;
@@ -9,37 +5,24 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author nicho
- */
 public class Tile extends JButton {
 
-    //declare variables for row and column indexes
-    int r;
-    int c;
-    
+    int r, c;
     boolean flagged;
-    //declare variable for if mine is at tile
     boolean m;
-    
-    JLabel score;
-    GameBoard GameBoardInstance; // Reference to GameBoard class instance
-    
-    //create a tile object that stores a row and column position
-    public Tile(int r, int c,GameBoard GameBoardInstance) {
+    boolean revealed;
+    GameBoard GameBoardInstance;
+
+    public Tile(int r, int c, GameBoard GameBoardInstance) {
         this.r = r;
         this.c = c;
-        
-        this.GameBoardInstance = GameBoardInstance; // Assign GameBoard class instance
-        this.score = new JLabel();
-        this.add(score);
+        this.GameBoardInstance = GameBoardInstance;
+        this.revealed = false;
 
-        this.setLayout(new BorderLayout());
-        score.setHorizontalAlignment(JLabel.CENTER);
-        score.setVerticalAlignment(JLabel.CENTER);
-        
-        
+        this.setFont(new Font("Arial Unicode MS", Font.PLAIN, GameBoardInstance.fontSize));
+        this.setBackground(Color.decode("#163757"));
+        this.setFocusPainted(false);
+
         // Add mouse listener to handle left and right clicks
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -54,35 +37,33 @@ public class Tile extends JButton {
     }
 
     public void setMine(boolean m) {
-        //create a mine in this tile
         this.m = m;
     }
 
     private void handleLeftClick() {
-        if (this.isEnabled()) {
-            // Define what happens on left click
+        if (this.isEnabled() && !revealed) {
+            if (!GameBoardInstance.minesSet) {
+                GameBoardInstance.handleFirstClick(this);
+            }
             if (flagged) {
-
+                return;
             } else if (m) {
-                setText("X"); // Example action: mark as mine
-                this.setEnabled(false);
+                setText("X");
+                setBackground(Color.red);
+                GameBoardInstance.gameOver();
             } else {
-                setText("O"); // Example action: mark as safe
-                GameBoardInstance.numClicks++;
-                GameBoardInstance.lblScore.setText("SCORE: " + GameBoardInstance.numClicks);
-                this.setEnabled(false);
+                GameBoardInstance.revealTile(r, c);
             }
         }
     }
 
-    public void handleRightClick() {
-        if (this.isEnabled()) {
-            // Define what happens on right click
+    private void handleRightClick() {
+        if (this.isEnabled() && !revealed) {
             if (flagged) {
                 setText("");
                 flagged = false;
             } else {
-                setText("F"); // Example action: mark as flagged
+                setText("F");
                 flagged = true;
             }
         }
