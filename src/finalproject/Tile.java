@@ -30,9 +30,6 @@ public class Tile extends JButton {
     public Tile(int r, int c,GameBoard GameBoardInstance) {
         this.r = r;
         this.c = c;
-
-        setBackground(Color.black);
-        setForeground(Color.white);
         
         this.GameBoardInstance = GameBoardInstance; // Assign GameBoard class instance
         this.score = new JLabel();
@@ -61,8 +58,7 @@ public class Tile extends JButton {
         this.m = m;
     }
 
-    public void handleLeftClick() {
-
+    private void handleLeftClick() {
         if (this.isEnabled()) {
             // Define what happens on left click
             if (flagged) {

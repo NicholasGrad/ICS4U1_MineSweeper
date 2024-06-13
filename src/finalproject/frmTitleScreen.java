@@ -65,15 +65,16 @@ public class frmTitleScreen extends javax.swing.JFrame {
                         .addGap(265, 265, 265)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(lblDifficulty))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(201, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,9 +85,9 @@ public class frmTitleScreen extends javax.swing.JFrame {
                 .addComponent(lblDifficulty)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addGap(134, 134, 134)
                 .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,19 +97,19 @@ public class frmTitleScreen extends javax.swing.JFrame {
         //create a dificulty of easy, medium, hard, and impossible
         //create a 8 by 8 grid with size of 100
         if(cmbGridSelection.getSelectedItem() == "Easy(8x8)"){
-           new GameBoard(8,8,10, 100);
+           new GameBoard(8,8,10, 100, 45);
          
         //create a 12 by 12 grid with size of 50
         } else if(cmbGridSelection.getSelectedItem() == "Medimum (12x12)"){
-            new GameBoard(12,12,10, 8);
+            new GameBoard(12,12,15, 80, 35);
             
         //create a 15 by 15 grid with size of 20
         } else if(cmbGridSelection.getSelectedItem() == "Hard (15x15)"){
-            new GameBoard(15,15,15, 80);
+            new GameBoard(15,15,20, 70, 25);
             
         //create a 30 by 30 grid with size of 10
         } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
-            new GameBoard(30,30,100, 50);
+            new GameBoard(30,30,100, 50, 15);
            
         }
         
