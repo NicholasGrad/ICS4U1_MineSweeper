@@ -4,9 +4,9 @@
  */
 package finalproject;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JButton;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.SwingUtilities;
 
 /**
@@ -18,17 +18,30 @@ public class Tile extends JButton {
     //declare variables for row and column indexes
     int r;
     int c;
-
-    boolean clicked = false;
     
     boolean flagged;
     //declare variable for if mine is at tile
     boolean m;
     
+    JLabel score;
+    GameBoard GameBoardInstance; // Reference to GameBoard class instance
+    
     //create a tile object that stores a row and column position
-    public Tile(int r, int c) {
+    public Tile(int r, int c,GameBoard GameBoardInstance) {
         this.r = r;
         this.c = c;
+
+        setBackground(Color.black);
+        setForeground(Color.white);
+        
+        this.GameBoardInstance = GameBoardInstance; // Assign GameBoard class instance
+        this.score = new JLabel();
+        this.add(score);
+
+        this.setLayout(new BorderLayout());
+        score.setHorizontalAlignment(JLabel.CENTER);
+        score.setVerticalAlignment(JLabel.CENTER);
+        
         
         // Add mouse listener to handle left and right clicks
         this.addMouseListener(new MouseAdapter() {
@@ -42,40 +55,40 @@ public class Tile extends JButton {
             }
         });
     }
-    
-    public boolean firstClick(){
-        return clicked;
-    }
-    
+
     public void setMine(boolean m) {
         //create a mine in this tile
         this.m = m;
     }
-    
-    private void handleLeftClick() {
-        
-        clicked = true;
-        
-        // Define what happens on left click
-        if(flagged) {
 
-        } else if (m) {
-            setText("X"); // Example action: mark as mine
-            this.setEnabled(false);
-        } else {
-            setText("O"); // Example action: mark as safe
-            this.setEnabled(false);
+    public void handleLeftClick() {
+
+        if (this.isEnabled()) {
+            // Define what happens on left click
+            if (flagged) {
+
+            } else if (m) {
+                setText("X"); // Example action: mark as mine
+                this.setEnabled(false);
+            } else {
+                setText("O"); // Example action: mark as safe
+                GameBoardInstance.numClicks++;
+                GameBoardInstance.lblScore.setText("SCORE: " + GameBoardInstance.numClicks);
+                this.setEnabled(false);
+            }
         }
     }
 
-    private void handleRightClick() {
-        // Define what happens on right click
-        if (flagged) {
-            setText("");
-            flagged = false;
-        } else {
-            setText("F"); // Example action: mark as flagged
-            flagged = true;
+    public void handleRightClick() {
+        if (this.isEnabled()) {
+            // Define what happens on right click
+            if (flagged) {
+                setText("");
+                flagged = false;
+            } else {
+                setText("F"); // Example action: mark as flagged
+                flagged = true;
+            }
         }
     }
 }

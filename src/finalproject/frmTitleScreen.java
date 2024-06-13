@@ -36,7 +36,7 @@ public class frmTitleScreen extends javax.swing.JFrame {
         setResizable(false);
 
         btnPlay.setBackground(new java.awt.Color(102, 255, 102));
-        btnPlay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPlay.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         btnPlay.setText("Play");
         btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,19 +96,19 @@ public class frmTitleScreen extends javax.swing.JFrame {
         //create a dificulty of easy, medium, hard, and impossible
         //create a 8 by 8 grid with size of 100
         if(cmbGridSelection.getSelectedItem() == "Easy(8x8)"){
-           new boardLayout(8,8,10, 100);
+           new GameBoard(8,8,10, 100);
          
         //create a 12 by 12 grid with size of 50
         } else if(cmbGridSelection.getSelectedItem() == "Medimum (12x12)"){
-            new boardLayout(12,12,10, 8);
+            new GameBoard(12,12,10, 8);
             
         //create a 15 by 15 grid with size of 20
         } else if(cmbGridSelection.getSelectedItem() == "Hard (15x15)"){
-            new boardLayout(15,15,15, 80);
+            new GameBoard(15,15,15, 80);
             
         //create a 30 by 30 grid with size of 10
         } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
-            new boardLayout(30,30,100, 50);
+            new GameBoard(30,30,100, 50);
            
         }
         
