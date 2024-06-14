@@ -41,6 +41,7 @@ public class Tile extends JButton {
     }
 
     private void handleLeftClick() {
+        
         if (this.isEnabled() && !revealed) {
             if (!GameBoardInstance.minesSet) {
                 GameBoardInstance.handleFirstClick(this);
@@ -62,9 +63,11 @@ public class Tile extends JButton {
             if (flagged) {
                 setText("");
                 flagged = false;
+                GameBoardInstance.flagBeforeGen = false;
             } else {
                 setText("F");
                 flagged = true;
+                GameBoardInstance.flagBeforeGen = true;
             }
         }
     }

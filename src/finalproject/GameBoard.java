@@ -13,6 +13,9 @@ public class GameBoard {
     int fontSize;
     int numClicks;
     boolean minesSet = false;
+    
+    boolean flagBeforeGen;
+    
     Tile[][] board;
     JFrame frmGame = new JFrame("MineSweeper");
     JLabel lblTitle = new JLabel();
@@ -74,11 +77,11 @@ public class GameBoard {
     }
 
     public void handleFirstClick(Tile clickedTile) {
-        if (!minesSet) {
+        if (!minesSet && !flagBeforeGen) {
             placeMines(board, clickedTile);
             minesSet = true;
+            revealTile(clickedTile.r, clickedTile.c);
         }
-        revealTile(clickedTile.r, clickedTile.c);
     }
 
     private void placeMines(Tile[][] board, Tile firstClickedTile) {
@@ -90,10 +93,13 @@ public class GameBoard {
             if ((mineRow != firstClickedTile.r || mineCol != firstClickedTile.c) && !board[mineRow][mineCol].m) {
                 board[mineRow][mineCol].setMine(true);
                 minesPlaced++;
+                
+                System.out.println(mineRow);
+                System.out.println(mineCol);
             }
         }
     }
-
+    
     public void revealTile(int row, int col) {
         if (row < 0 || row >= numRows || col < 0 || col >= numCols || board[row][col].revealed) {
             return;
