@@ -277,16 +277,20 @@ public class GameBoard {
     public void gameWon() {
         // Stop the timer
         timer.stop();
-        
+
         // Save time to text file
         try {
+            // create a new file writer for the times.txt file
             FileWriter writer = new FileWriter("times.txt", true); // true for append mode
+
+            // store the time
             writer.write(elapsedTime + "\n");
+
+            // close the writer
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
         }
-        
+
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
 
@@ -321,10 +325,10 @@ public class GameBoard {
                 }
             }
         }
-        
+
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
-        
+
         // display a popup box that the user lost
         JOptionPane.showMessageDialog(frmGame, "Mine Exploded!");
     }

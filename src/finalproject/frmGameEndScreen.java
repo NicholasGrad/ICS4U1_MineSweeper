@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 /**
  * This class creates a game over screen, displaying the time the user took,
  * their best time, a list of previous times, and buttons to replay and return
@@ -49,25 +50,25 @@ public class frmGameEndScreen extends javax.swing.JFrame {
 
         // set the time of previous game
         lblTimeTakenOutput.setText(String.valueOf(time));
-        
+
         // Display sorted times from file
         displaySortedTimes();
     }
-    
+
     /**
-     * This method reads times from times.txt
-     * and displays them in order.
+     * This method reads times from times.txt and displays them in order.
      */
     private void displaySortedTimes() {
+        // declare a new integer arrayList
         List<Integer> times = new ArrayList<>();
 
+        // try reading the text file with times
         try (BufferedReader reader = new BufferedReader(new FileReader("times.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 times.add(Integer.parseInt(line));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
         }
 
         // Sort times in ascending order
@@ -76,8 +77,11 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         // Display sorted times in the textarea
         StringBuilder sb = new StringBuilder();
         for (int time : times) {
-            sb.append(time).append("\n");
+            // add the time
+            sb.append(time).append(" sec\n");
         }
+
+        // set text area text
         txaTimesList.setText(sb.toString());
     }
 
@@ -94,14 +98,11 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         lblTimeTaken = new javax.swing.JLabel();
         pnlSeperator = new javax.swing.JPanel();
         lblLeaderboard = new javax.swing.JLabel();
-        lblFastestTime = new javax.swing.JLabel();
         lblTimeTakenOutput = new javax.swing.JLabel();
-        lblFastestTimeOutput = new javax.swing.JLabel();
         btnPlayAgain = new javax.swing.JButton();
         lblGameOver = new javax.swing.JLabel();
         btnReturnMenu = new javax.swing.JButton();
         lblSec1 = new javax.swing.JLabel();
-        lblSec2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaTimesList = new javax.swing.JTextArea();
         lblBorder = new javax.swing.JLabel();
@@ -132,21 +133,11 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         lblLeaderboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLeaderboard.setText("Leaderboard");
 
-        lblFastestTime.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        lblFastestTime.setForeground(new java.awt.Color(204, 204, 204));
-        lblFastestTime.setText("Fastest time:");
-
         lblTimeTakenOutput.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         lblTimeTakenOutput.setForeground(new java.awt.Color(204, 204, 204));
         lblTimeTakenOutput.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTimeTakenOutput.setText("0.00");
         lblTimeTakenOutput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        lblFastestTimeOutput.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        lblFastestTimeOutput.setForeground(new java.awt.Color(204, 204, 204));
-        lblFastestTimeOutput.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFastestTimeOutput.setText("0.00");
-        lblFastestTimeOutput.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         btnPlayAgain.setBackground(new java.awt.Color(51, 51, 255));
         btnPlayAgain.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
@@ -176,10 +167,6 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         lblSec1.setForeground(new java.awt.Color(204, 204, 204));
         lblSec1.setText("sec");
 
-        lblSec2.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        lblSec2.setForeground(new java.awt.Color(204, 204, 204));
-        lblSec2.setText("sec");
-
         txaTimesList.setEditable(false);
         txaTimesList.setColumns(20);
         txaTimesList.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
@@ -194,29 +181,23 @@ public class frmGameEndScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnReturnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPlayAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnReturnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPlayAgain, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblGameOver)
-                                .addGap(47, 47, 47))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTimeTaken)
-                            .addComponent(lblFastestTime))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTimeTakenOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFastestTimeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSec1)
-                            .addComponent(lblSec2))))
-                .addGap(18, 18, 18)
+                                .addGap(62, 62, 62))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTimeTaken)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTimeTakenOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSec1)
+                                .addGap(18, 18, 18)))))
                 .addComponent(pnlSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,20 +215,15 @@ public class frmGameEndScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(33, 33, 33)
                         .addComponent(lblGameOver)
-                        .addGap(37, 37, 37)
+                        .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblTimeTakenOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblSec1))
                             .addComponent(lblTimeTaken))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFastestTime)
-                            .addComponent(lblFastestTimeOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSec2))
-                        .addGap(18, 18, 18)
+                        .addGap(65, 65, 65)
                         .addComponent(btnPlayAgain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnReturnMenu)
@@ -342,12 +318,9 @@ public class frmGameEndScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBorder;
-    private javax.swing.JLabel lblFastestTime;
-    private javax.swing.JLabel lblFastestTimeOutput;
     private javax.swing.JLabel lblGameOver;
     private javax.swing.JLabel lblLeaderboard;
     private javax.swing.JLabel lblSec1;
-    private javax.swing.JLabel lblSec2;
     private javax.swing.JLabel lblTimeTaken;
     private javax.swing.JLabel lblTimeTakenOutput;
     private javax.swing.JPanel pnlSeperator;
