@@ -78,9 +78,7 @@ public class Tile extends JButton {
             if (!GameBoardInstance.minesSet) {
                 // run first click method in GameBoard
                 GameBoardInstance.handleFirstClick(this);
-            }
-            
-            // if this tile has a mine
+            } // if this tile has a mine
             else if (m) {
                 // Load bomb image from file
                 ImageIcon bombIcon = new ImageIcon("src\\finalproject\\bomb.png");
