@@ -1,5 +1,12 @@
 package finalproject;
 
+// import file reading librairies
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 /**
  * This class creates a game over screen, displaying the time the user took,
  * their best time, a list of previous times, and buttons to replay and return
@@ -42,6 +49,36 @@ public class frmGameEndScreen extends javax.swing.JFrame {
 
         // set the time of previous game
         lblTimeTakenOutput.setText(String.valueOf(time));
+        
+        // Display sorted times from file
+        displaySortedTimes();
+    }
+    
+    /**
+     * This method reads times from times.txt
+     * and displays them in order.
+     */
+    private void displaySortedTimes() {
+        List<Integer> times = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("times.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                times.add(Integer.parseInt(line));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Sort times in ascending order
+        Collections.sort(times);
+
+        // Display sorted times in the textarea
+        StringBuilder sb = new StringBuilder();
+        for (int time : times) {
+            sb.append(time).append("\n");
+        }
+        txaTimesList.setText(sb.toString());
     }
 
     /**
@@ -65,6 +102,8 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         btnReturnMenu = new javax.swing.JButton();
         lblSec1 = new javax.swing.JLabel();
         lblSec2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaTimesList = new javax.swing.JTextArea();
         lblBorder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,6 +180,12 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         lblSec2.setForeground(new java.awt.Color(204, 204, 204));
         lblSec2.setText("sec");
 
+        txaTimesList.setEditable(false);
+        txaTimesList.setColumns(20);
+        txaTimesList.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        txaTimesList.setRows(5);
+        jScrollPane1.setViewportView(txaTimesList);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,8 +219,14 @@ public class frmGameEndScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnlSeperator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblLeaderboard, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblLeaderboard, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +250,14 @@ public class frmGameEndScreen extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnPlayAgain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReturnMenu))
+                        .addComponent(btnReturnMenu)
+                        .addGap(0, 20, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(lblLeaderboard)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(lblLeaderboard)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 460, 300));
@@ -286,6 +340,7 @@ public class frmGameEndScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnPlayAgain;
     private javax.swing.JButton btnReturnMenu;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBorder;
     private javax.swing.JLabel lblFastestTime;
     private javax.swing.JLabel lblFastestTimeOutput;
@@ -296,5 +351,6 @@ public class frmGameEndScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblTimeTaken;
     private javax.swing.JLabel lblTimeTakenOutput;
     private javax.swing.JPanel pnlSeperator;
+    private javax.swing.JTextArea txaTimesList;
     // End of variables declaration//GEN-END:variables
 }

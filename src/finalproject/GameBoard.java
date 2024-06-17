@@ -1,14 +1,16 @@
 package finalproject;
 
-// import JFrame libraries
+// import JFrame, timer, and file libraries
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
- * This class creates a GameBoard object which creates a gui for the Minesweeper
+ * This class creates a GameBoard object which creates a GUI for the Minesweeper
  * game as well as a grid of button tile objects
  */
 public class GameBoard {
@@ -275,7 +277,16 @@ public class GameBoard {
     public void gameWon() {
         // Stop the timer
         timer.stop();
-
+        
+        // Save time to text file
+        try {
+            FileWriter writer = new FileWriter("times.txt", true); // true for append mode
+            writer.write(elapsedTime + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
 
@@ -310,9 +321,10 @@ public class GameBoard {
                 }
             }
         }
+        
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
-
+        
         // display a popup box that the user lost
         JOptionPane.showMessageDialog(frmGame, "Mine Exploded!");
     }

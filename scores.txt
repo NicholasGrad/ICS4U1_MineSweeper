@@ -1,7 +1,0 @@
-won: 4 seconds
-lost: 1 seconds
-lost: 1 seconds
-lost: 2 seconds
-lost: 1 seconds
-lost: 29 seconds
-lost: 61 seconds
