@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+/**
+ * This program creates a Minesweeper game that tracks and displays
+ * a number of randomly generated mines around a clicked tile.
  */
 package finalproject;
 
 /**
- *
- * @author nicho
+ * This class creates a title screen for
+ * the Minesweeper game, and allows the user
+ * to choose their difficulty, go to the instructions
+ * screen, play the game, and exit the program
  */
 public class frmTitleScreen extends javax.swing.JFrame {
 
@@ -15,7 +17,6 @@ public class frmTitleScreen extends javax.swing.JFrame {
      */
     public frmTitleScreen() {
         initComponents();
-
     }
 
     /**
@@ -27,36 +28,33 @@ public class frmTitleScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlBackground = new javax.swing.JPanel();
         lblDifficulty = new javax.swing.JLabel();
-        cmbGridSelection = new javax.swing.JComboBox<>();
+        cmbDifficultySelection = new javax.swing.JComboBox<>();
         btnPlay = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        lblDifficulty1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        lblMainTitle = new javax.swing.JLabel();
+        pnlSideBar = new javax.swing.JPanel();
         btnExitMain = new javax.swing.JButton();
-        btnInstruction = new javax.swing.JButton();
-        background1 = new javax.swing.JLabel();
+        btnInstructions = new javax.swing.JButton();
+        pnlBorder = new javax.swing.JPanel();
+        lblBorder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 23, -1, -1));
+        pnlBackground.setBackground(new java.awt.Color(51, 51, 255));
+        pnlBackground.setForeground(new java.awt.Color(51, 51, 255));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
-        jPanel2.setForeground(new java.awt.Color(51, 51, 255));
-
-        lblDifficulty.setFont(new java.awt.Font("Monospac821 BT", 0, 36)); // NOI18N
+        lblDifficulty.setFont(new java.awt.Font("Monospac821 BT", 1, 24)); // NOI18N
         lblDifficulty.setForeground(new java.awt.Color(255, 255, 255));
         lblDifficulty.setText("Difficulty");
 
-        cmbGridSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy(8x8)", "Medimum (12x12)", "Hard (15x15)", "Impossible (30x30)" }));
-        cmbGridSelection.addActionListener(new java.awt.event.ActionListener() {
+        cmbDifficultySelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy(8x8)", "Medium (12x12)", "Hard (15x15)", "Impossible (20x20)" }));
+        cmbDifficultySelection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbGridSelectionActionPerformed(evt);
+                cmbDifficultySelectionActionPerformed(evt);
             }
         });
 
@@ -67,7 +65,7 @@ public class frmTitleScreen extends javax.swing.JFrame {
         btnPlay.setBorderPainted(false);
         btnPlay.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         btnPlay.setForeground(new java.awt.Color(255, 255, 255));
-        btnPlay.setText("Start");
+        btnPlay.setText("> Play");
         btnPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlayActionPerformed(evt);
@@ -80,160 +78,178 @@ public class frmTitleScreen extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 244, Short.MAX_VALUE)
+            .addGap(0, 23, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 6, Short.MAX_VALUE)
+            .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        lblDifficulty1.setBackground(new java.awt.Color(0, 0, 0));
-        lblDifficulty1.setFont(new java.awt.Font("Monospac821 BT", 0, 36)); // NOI18N
-        lblDifficulty1.setForeground(new java.awt.Color(255, 255, 255));
-        lblDifficulty1.setText("Minesweeper");
+        lblMainTitle.setBackground(new java.awt.Color(0, 0, 0));
+        lblMainTitle.setFont(new java.awt.Font("Monospac821 BT", 0, 36)); // NOI18N
+        lblMainTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblMainTitle.setText("MINESWEEPER");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlSideBar.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlSideBarLayout = new javax.swing.GroupLayout(pnlSideBar);
+        pnlSideBar.setLayout(pnlSideBarLayout);
+        pnlSideBarLayout.setHorizontalGroup(
+            pnlSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 6, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlSideBarLayout.setVerticalGroup(
+            pnlSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         btnExitMain.setContentAreaFilled(false);
         btnExitMain.setFocusPainted(false);
         btnExitMain.setOpaque(false);
-        btnExitMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalproject/Instruction!.png"))); // NOI18N
+        btnExitMain.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        btnExitMain.setForeground(new java.awt.Color(255, 255, 255));
+        btnExitMain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalproject/exit.png"))); // NOI18N
+        btnExitMain.setText("Exit");
         btnExitMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitMainActionPerformed(evt);
             }
         });
 
-        btnInstruction.setContentAreaFilled(false);
-        btnInstruction.setFocusPainted(false);
-        btnInstruction.setOpaque(false);
-        btnInstruction.setBackground(new java.awt.Color(255, 204, 51));
-        btnInstruction.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
-        btnInstruction.setForeground(new java.awt.Color(255, 255, 255));
-        btnInstruction.setText("Instruction");
-        btnInstruction.addActionListener(new java.awt.event.ActionListener() {
+        btnInstructions.setContentAreaFilled(false);
+        btnInstructions.setFocusPainted(false);
+        btnInstructions.setOpaque(false);
+        btnInstructions.setBackground(new java.awt.Color(255, 204, 51));
+        btnInstructions.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        btnInstructions.setForeground(new java.awt.Color(255, 255, 255));
+        btnInstructions.setText("> Instructions");
+        btnInstructions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInstructionActionPerformed(evt);
+                btnInstructionsActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlBorder.setLayout(null);
+
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblDifficulty)
-                                            .addComponent(lblDifficulty1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
-                                        .addComponent(btnExitMain, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnPlay)
-                                            .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(btnInstruction, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(pnlSideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInstructions)
+                    .addComponent(btnExitMain)
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblMainTitle)
+                                .addGap(0, 0, 0)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbDifficultySelection, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDifficulty))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                                .addComponent(pnlBorder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(51, 51, 51))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblDifficulty1)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMainTitle)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(lblDifficulty)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDifficulty))
-                            .addComponent(btnExitMain, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(cmbGridSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                                .addComponent(cmbDifficultySelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(pnlBorder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(btnInstruction, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExitMain, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 3, Short.MAX_VALUE))
+                    .addComponent(pnlSideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 500, 360));
+        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 520, 320));
 
-        background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background1Retro.PNG"))); // NOI18N
-        getContentPane().add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 380));
+        lblBorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finalproject/background1Retro.PNG"))); // NOI18N
+        getContentPane().add(lblBorder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+    /**
+     * This opens the instructions menu screen on instructions button click
+     *
+     * @param evt
+     */
+    private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
+        // create Instructions screen
+        new frmInstructionsScreen().setVisible(true);
+        // close this screen
         this.dispose();
-        //create a dificulty of easy, medium, hard, and impossible
-        
-        //create a 8 by 8 grid with size of 100
-        if(cmbGridSelection.getSelectedItem() == "Easy(8x8)"){
-           new GameBoard(8,8,10, 100, 45);
 
-        //create a 12 by 12 grid with size of 50
-        } else if(cmbGridSelection.getSelectedItem() == "Medimum (12x12)"){
-            new GameBoard(12,12,15, 80, 35);
+    }//GEN-LAST:event_btnInstructionsActionPerformed
 
-        //create a 15 by 15 grid with size of 20
-        } else if(cmbGridSelection.getSelectedItem() == "Hard (15x15)"){
-            new GameBoard(15,15,20, 70, 25);
-            
-        //create a 30 by 30 grid with size of 10
-        } else if(cmbGridSelection.getSelectedItem() == "Impossible (30x30)"){
-            new GameBoard(30,30,100, 50, 15);
-           
-        }
-        
-   
-    }//GEN-LAST:event_btnPlayActionPerformed
-
-    private void cmbGridSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGridSelectionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbGridSelectionActionPerformed
-
+    /**
+     * This closes the entire program when exit button clicked
+     *
+     * @param evt
+     */
     private void btnExitMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitMainActionPerformed
-    System.exit(0);
+        //close program
+        System.exit(0);
     }//GEN-LAST:event_btnExitMainActionPerformed
 
-    private void btnInstructionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionActionPerformed
-        new frameInstruction();
-        new frameInstruction().setVisible(true);
-        new frmTitleScreen().setVisible(false);
+    /**
+     * This runs the GameBoard class on play button clicked. It passes
+     * parameters for the number of rows and columns of the Minesweeper game,
+     * the number of mines to be placed, the size of each button in the grid,
+     * and the font size of the text displayed in the buttons
+     *
+     * @param evt
+     */
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+
+        // close this screen
         this.dispose();
-        
-    }//GEN-LAST:event_btnInstructionActionPerformed
+
+        // create a 8 by 8 grid with 10 mines
+        if (cmbDifficultySelection.getSelectedItem() == "Easy(8x8)") {
+            new GameBoard(8, 8, 10, 100, 45);
+        } // create a 12 by 12 grid with 20 mines
+        else if (cmbDifficultySelection.getSelectedItem() == "Medium (12x12)") {
+            new GameBoard(12, 12, 20, 65, 35);
+        } // create a 15 by 15 grid with 50 mines
+        else if (cmbDifficultySelection.getSelectedItem() == "Hard (15x15)") {
+            new GameBoard(15, 15, 50, 55, 25);
+        } // create a 20 by 20 grid with 100 mines
+        else if (cmbDifficultySelection.getSelectedItem() == "Impossible (20x20)") {
+            new GameBoard(20, 20, 100, 40, 15);
+        }
+
+    }//GEN-LAST:event_btnPlayActionPerformed
+
+    private void cmbDifficultySelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDifficultySelectionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDifficultySelectionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,22 +281,23 @@ public class frmTitleScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // make this screen visible
                 new frmTitleScreen().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel background1;
     private javax.swing.JButton btnExitMain;
-    private javax.swing.JButton btnInstruction;
+    private javax.swing.JButton btnInstructions;
     private javax.swing.JButton btnPlay;
-    private javax.swing.JComboBox<String> cmbGridSelection;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> cmbDifficultySelection;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblBorder;
     private javax.swing.JLabel lblDifficulty;
-    private javax.swing.JLabel lblDifficulty1;
+    private javax.swing.JLabel lblMainTitle;
+    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlBorder;
+    private javax.swing.JPanel pnlSideBar;
     // End of variables declaration//GEN-END:variables
 }

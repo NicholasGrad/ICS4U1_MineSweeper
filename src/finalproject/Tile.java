@@ -1,5 +1,6 @@
 package finalproject;
 
+// import action and JFrame libraries
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -19,9 +20,7 @@ public class Tile extends JButton {
         this.GameBoardInstance = GameBoardInstance;
         this.revealed = false;
 
-        this.setFont(new Font("Arial Unicode MS", Font.PLAIN, GameBoardInstance.fontSize));
-        this.setBackground(Color.decode("#163757"));
-        this.setFocusPainted(false);
+        
 
         // Add mouse listener to handle left and right clicks
         this.addMouseListener(new MouseAdapter() {
@@ -37,6 +36,7 @@ public class Tile extends JButton {
     }
 
     public void setMine(boolean m) {
+        // set mine
         this.m = m;
     }
 
@@ -49,9 +49,14 @@ public class Tile extends JButton {
             if (flagged) {
                 return;
             } else if (m) {
-                setText("X");
-                setBackground(Color.red);
-                GameBoardInstance.gameOver();
+                // Load bomb image from file
+                ImageIcon bombIcon = new ImageIcon("src\\finalproject\\bomb.png");
+
+                // set the bomb image
+                setIcon(bombIcon);
+                
+                setForeground(Color.red);
+                GameBoardInstance.gameLost();
             } else {
                 GameBoardInstance.revealTile(r, c);
             }
@@ -65,7 +70,12 @@ public class Tile extends JButton {
                 flagged = false;
                 GameBoardInstance.flagBeforeGen = false;
             } else {
-                setText("F");
+                // Load flag image from file (adjust the path as needed)
+                ImageIcon flagIcon = new ImageIcon("src\\finalproject\\flag.png");
+
+                // Set the bomb image as the icon
+                setIcon(flagIcon);
+                
                 flagged = true;
                 GameBoardInstance.flagBeforeGen = true;
             }
