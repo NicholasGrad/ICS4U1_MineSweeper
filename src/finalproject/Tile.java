@@ -69,16 +69,18 @@ public class Tile extends JButton {
     private void handleLeftClick() {
         // if this tile has not been clicked
         if (this.isEnabled() && !revealed) {
+            // if this tile is flagged
+            if (flagged) {
+                // do nothing
+                return;
+            }
             // if this is the first tile to be clicked
             if (!GameBoardInstance.minesSet) {
                 // run first click method in GameBoard
                 GameBoardInstance.handleFirstClick(this);
             }
-            // if this tile is flagged
-            if (flagged) {
-                // do nothing
-                return;
-            } // if this tile has a mine
+            
+            // if this tile has a mine
             else if (m) {
                 // Load bomb image from file
                 ImageIcon bombIcon = new ImageIcon("src\\finalproject\\bomb.png");
@@ -106,6 +108,7 @@ public class Tile extends JButton {
             if (flagged) {
                 // remove flag
                 setText("");
+                setIcon(null);
                 flagged = false;
 
                 // no flag on first clicked tile
