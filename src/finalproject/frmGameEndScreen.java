@@ -1,36 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package finalproject;
 
 /**
+ * This class creates a game over screen, displaying the time the user took,
+ * their best time, a list of previous times, and buttons to replay and return
+ * to the title screen
  *
- * @author johnnguyen
  */
 public class frmGameEndScreen extends javax.swing.JFrame {
-    
-    GameBoard gameBoardInstance;
+
+    // declare variables for the previously played game
     int tileSize;
     int numRows;
     int numCols;
     int numMines;
     int fontSize;
-    String difficulty;
-    
+
+    // declare an instance of GameBoard class
+    GameBoard gameBoardInstance;
+
     /**
-     * Creates new form frmWinningScreen
+     * This creates a new game end screen JFrame
+     *
+     * @param tileSize
+     * @param numRows
+     * @param numCols
+     * @param numMines
+     * @param fontSize
+     * @param gameBoardInstance
+     * @param time
      */
-    public frmGameEndScreen(int tileSize,int numRows,int numCols,int numMines,int fontSize,GameBoard gameBoardInstance, int time) {
+    public frmGameEndScreen(int tileSize, int numRows, int numCols, int numMines, int fontSize, GameBoard gameBoardInstance, int time) {
         initComponents();
+
+        // initialize parameters of last played game
         this.gameBoardInstance = gameBoardInstance;
         this.tileSize = tileSize;
         this.numRows = numRows;
         this.numCols = numCols;
         this.numMines = numMines;
         this.fontSize = fontSize;
-        this.difficulty = difficulty;
-        
+
+        // set the time of previous game
         lblTimeTakenOutput.setText(String.valueOf(time));
     }
 
@@ -204,15 +214,34 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This closes the previous game screen and the game end screen and opens
+     * the title screen when Return to Menu button is clicked
+     *
+     * @param evt
+     */
     private void btnReturnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnMenuActionPerformed
+        // close previous game screen and this screen
         gameBoardInstance.frmGame.dispose();
-        new frmTitleScreen().setVisible(true);
         this.dispose();
+
+        // open title screen
+        new frmTitleScreen().setVisible(true);
+
     }//GEN-LAST:event_btnReturnMenuActionPerformed
 
+    /**
+     * This closes the game end screen and resets the previous game and its
+     * screen
+     *
+     * @param evt
+     */
     private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
+        // close the previous game and restart it
         gameBoardInstance.frmGame.dispose();
-        new GameBoard(numRows,numCols,numMines,tileSize,fontSize);
+        new GameBoard(numRows, numCols, numMines, tileSize, fontSize);
+
+        // close this screen
         this.dispose();
     }//GEN-LAST:event_btnPlayAgainActionPerformed
 
@@ -247,7 +276,8 @@ public class frmGameEndScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmGameEndScreen(1,1,1,1,1,null,1).setVisible(true);
+                // make this screen visible using default parameters
+                new frmGameEndScreen(1, 1, 1, 1, 1, null, 1).setVisible(true);
             }
         });
     }

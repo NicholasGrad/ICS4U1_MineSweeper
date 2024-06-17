@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package finalproject;
 
 /**
- *
- * @author johnnguyen
+ * This class creates a JFrame displaying information about how to play
+ * Minesweeper
  */
 public class frmInstructionsScreen extends javax.swing.JFrame {
 
@@ -15,7 +11,6 @@ public class frmInstructionsScreen extends javax.swing.JFrame {
      */
     public frmInstructionsScreen() {
         initComponents();
-        
     }
 
     /**
@@ -78,11 +73,16 @@ public class frmInstructionsScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * This closes the instructions screen and returns to the title screen
+     *
+     * @param evt
+     */
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // close this screen
         this.dispose();
+        // create title screen
         new frmTitleScreen().setVisible(true);
-        //new frmInstructionsScreen().setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -118,6 +118,7 @@ public class frmInstructionsScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // make this screen visible
                 new frmInstructionsScreen().setVisible(false);
             }
         });

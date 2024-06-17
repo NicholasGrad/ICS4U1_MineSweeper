@@ -46,11 +46,12 @@ public class GameBoard {
 
     /**
      * Create a new JFrame
+     *
      * @param rows
      * @param columns
      * @param mines
      * @param size
-     * @param font 
+     * @param font
      */
     public GameBoard(int rows, int columns, int mines, int size, int font) {
         // initialize properties of the board (based on arguments received from frmTitleScreen)   
@@ -59,17 +60,17 @@ public class GameBoard {
         numCols = columns;
         numMines = mines;
         fontSize = font;
-        
+
         // calculate the width and height of the board
         int boardWidth = numCols * tileSize;
         int boardHeight = numRows * tileSize;
-        
+
         // calculate the number of spaces that do not contain mines
         emptySpaces = (numCols * numRows) - numMines;
-        
+
         // create a new 2D array of Tile objects
         board = new Tile[numRows][numCols];
-        
+
         // initialize properties of the JFrame elements
         frmGame.setSize(boardWidth, boardHeight);   // frame
         frmGame.setLocationRelativeTo(null);
@@ -116,9 +117,10 @@ public class GameBoard {
     }
 
     /**
-     * This method loops through the entire game grid,
-     * creating a button tile at each index
-     * @param board 
+     * This method loops through the entire game grid, creating a button tile at
+     * each index
+     *
+     * @param board
      */
     private void createGrid(Tile[][] board) {
         // loop through each row
@@ -127,10 +129,10 @@ public class GameBoard {
             for (int c = 0; c < numCols; c++) {
                 // create a new tile object at this location
                 Tile tile = new Tile(r, c, this);
-                
+
                 // add this object to the 2D "board" array
                 board[r][c] = tile;
-                
+
                 // set the visual properties of the tile
                 tile.setFont(new Font("Monospaced", Font.BOLD, fontSize));
                 tile.setBackground(Color.white);
@@ -143,35 +145,35 @@ public class GameBoard {
     }
 
     /**
-     * This method is run when mines are not yet
-     * set (before first left click). It sets
-     * the mines.
-     * @param clickedTile 
+     * This method is run when mines are not yet set (before first left click).
+     * It sets the mines.
+     *
+     * @param clickedTile
      */
     public void handleFirstClick(Tile clickedTile) {
         // if mines are not set and there is no flag on the clicked tile
         if (!minesSet && !flagBeforeGen) {
             // generate and set the mines
             placeMines(board, clickedTile);
-            
+
             // set mines as placed
             minesSet = true;
-            
+
             // run the revealing tile method
             revealTile(clickedTile.r, clickedTile.c);
         }
     }
-    
+
     /**
-     * This method randomly generates mines
-     * and places them on the grid
+     * This method randomly generates mines and places them on the grid
+     *
      * @param board
-     * @param firstClickedTile 
+     * @param firstClickedTile
      */
     private void placeMines(Tile[][] board, Tile firstClickedTile) {
         // declare and initialize number of placed mines as zero
         int minesPlaced = 0;
-        
+
         // while the number of set mines is less than the number of total mines 
         while (minesPlaced < numMines) {
             // generate a random mine location on the grid
@@ -182,7 +184,7 @@ public class GameBoard {
             if ((mineRow != firstClickedTile.r || mineCol != firstClickedTile.c) && !board[mineRow][mineCol].m) {
                 // set a mine in the tile object at the generated location
                 board[mineRow][mineCol].setMine(true);
-                
+
                 //increase the number of placed mines by one
                 minesPlaced++;
             }
@@ -190,11 +192,13 @@ public class GameBoard {
     }
 
     /**
-     * This recursive method checks the surrounding tiles of the given row and column
-     * coordinates to reveal them if they are not already revealed and do not contain a mine.
-     * If the tile has no surrounding mines, it recursively reveals its surrounding tiles.
+     * This recursive method checks the surrounding tiles of the given row and
+     * column coordinates to reveal them if they are not already revealed and do
+     * not contain a mine. If the tile has no surrounding mines, it recursively
+     * reveals its surrounding tiles.
+     *
      * @param row
-     * @param col 
+     * @param col
      */
     public void revealTile(int row, int col) {
         // base case for if the clicked tile is outside the grid or already revealed
@@ -204,7 +208,7 @@ public class GameBoard {
         // set as revealed and disable the button tile
         board[row][col].revealed = true;
         board[row][col].setEnabled(false);
-        
+
         // count the number of mines around this tile
         int mineCount = countMinesAround(row, col);
 
@@ -212,12 +216,11 @@ public class GameBoard {
         if (mineCount > 0) {
             // set the text of the tile to the number of surrounding mines
             board[row][col].setText(String.valueOf(mineCount));
-        }
-        // if there are no surrounding mines
+        } // if there are no surrounding mines
         else {
             // set text of the tile as empty
             board[row][col].setText("");
-            
+
             // Iterate through the surrounding tiles
             for (int r = row - 1; r <= row + 1; r++) {
                 for (int c = col - 1; c <= col + 1; c++) {
@@ -240,16 +243,16 @@ public class GameBoard {
     }
 
     /**
-     * This method counts the number of mines
-     * surrounding a tile
+     * This method counts the number of mines surrounding a tile
+     *
      * @param row
      * @param col
-     * @return 
+     * @return
      */
     private int countMinesAround(int row, int col) {
         // declare and initialize number of mines as zero
         int mineCount = 0;
-        
+
         // iterate through the surrounding tiles 
         for (int r = row - 1; r <= row + 1; r++) {
             for (int c = col - 1; c <= col + 1; c++) {
@@ -260,14 +263,14 @@ public class GameBoard {
                 }
             }
         }
-        
+
         // return the number of surrounding mines
         return mineCount;
     }
 
     /**
-     * This method is run when the number of correctly revealed
-     * tiles is equal to the number of empty tiles
+     * This method is run when the number of correctly revealed tiles is equal
+     * to the number of empty tiles
      */
     public void gameWon() {
         // Stop the timer
@@ -275,14 +278,14 @@ public class GameBoard {
 
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
-        
+
         // display a popup box that the user won
         JOptionPane.showMessageDialog(frmGame, "All Mines Cleared!");
     }
 
     /**
-     * This method is run when a tile containing a mine is
-     * clicked. It reveals all mine locations.
+     * This method is run when a tile containing a mine is clicked. It reveals
+     * all mine locations.
      */
     public void gameLost() {
         // Stop the timer
@@ -295,21 +298,21 @@ public class GameBoard {
             for (int c = 0; c < numCols; c++) {
                 // disable the tiles
                 board[r][c].setEnabled(false);
-                
+
                 // if there is a mine, set bomb image
                 if (board[r][c].m) {
-                
-                // load bomb image from file
-                ImageIcon bombIcon = new ImageIcon("src\\finalproject\\bomb.png");
-                  
-                // set bombs
-                board[r][c].setIcon(bombIcon);
+
+                    // load bomb image from file
+                    ImageIcon bombIcon = new ImageIcon("src\\finalproject\\bomb.png");
+
+                    // set bombs
+                    board[r][c].setIcon(bombIcon);
                 }
             }
         }
         // create a new end screen, passing the current game's parameters
         new frmGameEndScreen(tileSize, numRows, numCols, numMines, fontSize, this, elapsedTime).setVisible(true);
-        
+
         // display a popup box that the user lost
         JOptionPane.showMessageDialog(frmGame, "Mine Exploded!");
     }

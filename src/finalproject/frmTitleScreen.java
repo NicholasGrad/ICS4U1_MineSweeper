@@ -5,10 +5,9 @@
 package finalproject;
 
 /**
- * This class creates a title screen for
- * the Minesweeper game, and allows the user
- * to choose their difficulty, go to the instructions
- * screen, play the game, and exit the program
+ * This class creates a title screen for the Minesweeper game, and allows the
+ * user to choose their difficulty, go to the instructions screen, play the
+ * game, and exit the program
  */
 public class frmTitleScreen extends javax.swing.JFrame {
 
